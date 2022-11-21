@@ -1,0 +1,78 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Bahnschrift', sans-serif;
+    text-decoration: none;
+}
+header {
+    background-color: #666666;
+    position: fixed;
+    width: 100%;
+}
+nav {
+    display: inline-flex;
+}
+a + .drop-down {
+    display: none;
+}
+a:hover + .drop-down, .drop-down:hover {
+    display: block;
+}
+nav a {
+    margin: 5px;
+    margin-right: 40px;
+    font-size: 30px;
+    background-color: #888888;
+    padding: 3px;
+    border-radius: 4px;
+}
+nav div {
+    width: 150px;
+    font-size: 20px;
+    background-color: #FFFFFF;
+}
+main {
+    text-align: center;
+}
+.new-block {
+    max-width: 700px;
+    min-width: 700px;
+    border-radius: 3px;
+    background-color: #666666;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    display: inline-block;
+    color: #000000;
+    text-align: left;
+}
+.new-bigger-block {
+    max-width: 1000px;
+    min-width: 1000px;
+    border-radius: 3px;
+    background-color: #666666;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    display: inline-block;
+    color: #000000;
+    text-align: left;
+}
+.distance-from-header {
+    padding-bottom: 100px;
+    font-size: 1px;
+}
+@keyframes error-animation {
+	0% {
+		color: #FF0000;
+	}
+    100% {
+		color: #000000;
+	}
+}
+@media (max-width: 770px) {
+    h1 {
+        font-size: 20px;
+    }
+    p {
+        font-size: 15px;
+    }
+}
