@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width">
         <meta name="Description" content="Sie können Produkte und Kategorien erstellen, anzeigen, bearbeiten und löschen">
         <meta name="keywords" content="erstellen, anzeigen, bearbeiten, löschen, produkte, Kategorien">
-        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="../../style/style.css">
     </head>
     <body>
         <header>
@@ -31,7 +31,14 @@
         <p class="distance-from-header" alt=".">yrs</p>
         <main>
             <div class="big-block">
-                <h1>Dies Ist Die Start Seite</h1>
+                <h1>Melden sie sich hier an</h1>
+                <span>username: <input type="text" id="name"></span>
+                <br>
+                <span>password: <input type="password" id="passwd"></span>
+                <br>
+                <button id="login">BESTÄTIGE</button>
+                <button id="back">ABRECHEN</button>
+                <p id="status"></p>
             </div>
             <br>
 
@@ -39,6 +46,6 @@
         <footer>
             <p>(C) Dominic Streit</p>
         </footer>
-        <script src="script.js"></script>
+        <script src="login.js"></script>
     </body>
 </html>
