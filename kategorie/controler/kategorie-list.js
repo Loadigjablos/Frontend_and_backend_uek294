@@ -1,15 +1,23 @@
-var kategorieList = document.querySelector("#kategorie-list");
+var kategorieList;
 
 var buttonDeleteOut = [];
 var buttonEditOut = [];
 
+function loadAllCategories() {
+    var table = document.createElement("table");
+    table.id = "kategorie-list";
+    table.innerHTML = "<tr><th>Kategorien ID</th><th>Active</th><th>Name</th><th>yes</th></tr>";
+    document.querySelector("#table-spot").appendChild(table);
 
+    kategorieList = document.querySelector("#kategorie-list");
 
-requestOne = new XMLHttpRequest();
-requestOne.open("Get", "../../API/v1/Categorys");
-requestOne.onreadystatechange = onRequstUpdate;
-requestOne.send();
-onRequstUpdate();
+    requestOne = new XMLHttpRequest();
+    requestOne.open("Get", "../../API/v1/Categorys");
+    requestOne.onreadystatechange = onRequstUpdate;
+    requestOne.send();
+}
+
+loadAllCategories();
 
 function onRequstUpdate() {
     if (requestOne.readyState < 4) {
@@ -63,10 +71,12 @@ function addEventListenerToButtons() {
     for (i = 0; i < buttonDeleteOut.length; i++) {
         buttonDeleteOut[i].addEventListener("click", function (event) {
             var categoryId = this.className;
-            requestOne = new XMLHttpRequest();
-            requestOne.open("DELETE", "../../API/v1/Category/" + categoryId);
-            requestOne.onreadystatechange = onRequstUpdate;
-            requestOne.send();
+            if (confirm("Sind Sie sicher das sie dieses Element " + categoryId + " löschen wollen") == true) {
+                requestOne = new XMLHttpRequest();
+                requestOne.open("DELETE", "../../API/v1/Category/" + categoryId);
+                requestOne.onreadystatechange = reloadAllCategories;
+                requestOne.send();
+            }
         });
     }
     
@@ -78,6 +88,12 @@ function addEventListenerToButtons() {
     }
 }
 
+function reloadAllCategories() {
+    document.querySelector("#kategorie-list").remove();
+    loadAllCategories();
+}
+
 function loginRedirect() {  
     window.location = "../../login/login.html";
-}  
+    document.querySelector("#login-problem").innerHTML = "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Melden sie sich an<div>";
+}
