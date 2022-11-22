@@ -29,5 +29,4 @@ function onRequstUpdate() {
     } else {
         statusText.innerHTML = "<div style='animation-name: not-error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Richtig<div>";
     }
-    console.log(requestOne.status);
 }

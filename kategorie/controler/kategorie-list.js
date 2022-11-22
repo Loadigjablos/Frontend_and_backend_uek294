@@ -6,7 +6,7 @@ var buttonEditOut = [];
 function loadAllCategories() {
     var table = document.createElement("table");
     table.id = "kategorie-list";
-    table.innerHTML = "<tr><th>Kategorien ID</th><th>Active</th><th>Name</th><th>yes</th></tr>";
+    table.innerHTML = "<tr><th>Kategorien ID</th><th>Active</th><th>Name</th><th>Buttons</th></tr>";
     document.querySelector("#table-spot").appendChild(table);
 
     kategorieList = document.querySelector("#kategorie-list");

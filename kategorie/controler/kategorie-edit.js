@@ -6,13 +6,13 @@ var activeValue;
 var requestOne;
 
 requestOne = new XMLHttpRequest();
-requestOne.open("GET", "../../API/v1/Category/" + location.hash);
+requestOne.open("GET", "../../API/v1/Category/" + location.hash.substring(1));
 requestOne.onreadystatechange = onRequstUpdate;
 requestOne.send();
 
 document.querySelector("#edit").addEventListener("click", function (event) {
     var requestTwo = new XMLHttpRequest();
-    requestTwo.open("PUT", "../../API/v1/Category" + location.hash);
+    requestTwo.open("PUT", "../../API/v1/Category/" + location.hash.substring(1));
     if (activeValue == "on") {
         activeValue = false;
     } else {
@@ -22,9 +22,6 @@ document.querySelector("#edit").addEventListener("click", function (event) {
         active: activeValue,
         name: categoryName.value
     }
-    console.log(sendJSON);
-    console.log(categoryActive.value);
-    console.log(activeValue);
     requestTwo.send(JSON.stringify(sendJSON));
 });
 
@@ -35,10 +32,9 @@ function onRequstUpdate() {
     if (requestOne.status == 401) {
         loginRedirect();
     }
-    console.log(requestOne.status);
-    categoryName.value = requestOne.name;
-    console.log(requestOne.name);
-    categoryActive.value = requestOne.active;
+    var kategorieJson = JSON.parse(requestOne.responseText);
+    categoryName.value = kategorieJson.name;
+    categoryActive.value = kategorieJson.active;
 }
 
 function loginRedirect() {  
