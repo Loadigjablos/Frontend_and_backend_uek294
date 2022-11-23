@@ -1,10 +1,10 @@
 var categoryName = document.querySelector("#name");
 var categoryActive = document.querySelector("#active");
 
-var activeValue = categoryActive.value;
+var activeValue = categoryActive.value; // to cheek if a cheeckbox is active
 
 /**
- * 
+ * the button create has this function when it is clicked
  */
 document.querySelector("#create").addEventListener("click", function (event) {
     requestOne = new XMLHttpRequest();
@@ -24,8 +24,8 @@ document.querySelector("#create").addEventListener("click", function (event) {
 });
 
 /**
- * 
- * @returns 
+ * will be executed when the instance requestOne wants.
+ * @returns if the message issnt loaded
  */
 function onRequstUpdate() {
     if (requestOne.readyState < 4) {
@@ -37,7 +37,7 @@ function onRequstUpdate() {
 }
 
 /**
- * 
+ * redirects the user to the login page
  */
 function loginRedirect() {  
     window.location = "../../login/login.html";

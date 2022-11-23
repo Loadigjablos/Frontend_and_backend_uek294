@@ -1,12 +1,15 @@
 var kategorieList;
 
-var buttonDeleteOut = [];
-var buttonEditOut = [];
+var buttonDeleteOut = []; // all the buttons to delete seretain datasets
+var buttonEditOut = []; // all the buttons that edit sertain datasets
 
+/**
+ * when called will request data from the API, that will call the function onRequstUpdate.
+ */
 function loadAllCategories() {
     var table = document.createElement("table");
     table.id = "kategorie-list";
-    table.innerHTML = "<tr><th>Kategorien ID</th><th>Active</th><th>Name</th><th>Buttons</th></tr>";
+    table.innerHTML = "<tr><th>Kategorien ID</th><th>Active</th><th>Name</th><th>Knöpfe</th></tr>";
     document.querySelector("#table-spot").appendChild(table);
 
     kategorieList = document.querySelector("#kategorie-list");
@@ -19,6 +22,10 @@ function loadAllCategories() {
 
 loadAllCategories();
 
+/**
+ * will generate the table with datasets
+ * @returns if the message issnt loaded
+ */
 function onRequstUpdate() {
     if (requestOne.readyState < 4) {
         return;
@@ -67,7 +74,13 @@ function onRequstUpdate() {
     addEventListenerToButtons();
 }
 
+/**
+ * after all buttons are created, this will add listeners to them
+ */
 function addEventListenerToButtons() {
+    /* 
+     * the delete button if confirmed, will request mith the delete method the id of the categorie
+     */
     for (i = 0; i < buttonDeleteOut.length; i++) {
         buttonDeleteOut[i].addEventListener("click", function (event) {
             var categoryId = this.className;
@@ -80,6 +93,9 @@ function addEventListenerToButtons() {
         });
     }
     
+    /* 
+     * the edit buton redirects to the edit page with the hashtag of the class
+     */
     for (i = 0; i < buttonEditOut.length; i++) {
         buttonEditOut[i].addEventListener("click", function (event) {
             var categoryId = this.className;
@@ -88,11 +104,17 @@ function addEventListenerToButtons() {
     }
 }
 
+/**
+ * delets the table for it to be realoded
+ */
 function reloadAllCategories() {
     document.querySelector("#kategorie-list").remove();
     loadAllCategories();
 }
 
+/**
+ * redirects the user to the login page
+ */
 function loginRedirect() {  
     window.location = "../../login/login.html";
     document.querySelector("#login-problem").innerHTML = "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Melden sie sich an<div>";
