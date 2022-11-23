@@ -6,21 +6,23 @@ var buttonEditOut = []; // all the buttons that edit sertain datasets
 /**
  * when called will request data from the API, that will call the function onRequstUpdate.
  */
-function loadAllCategories() {
+function loadAllProducts() {
+    buttonDeleteOut = [];
+    buttonEditOut = [];
     var table = document.createElement("table");
-    table.id = "kategorie-list";
+    table.id = "product-list";
     table.innerHTML = "<tr><th>product ID</th><th>sku</th><th>active</th><th>id_category</th><th>productname</th><th>image</th><th>description</th><th>price</th><th>stock</th><th>Knöpfe</th></tr>";
     document.querySelector("#table-spot").appendChild(table);
 
-    kategorieList = document.querySelector("#kategorie-list");
+    kategorieList = document.querySelector("#product-list");
 
     requestOne = new XMLHttpRequest();
-    requestOne.open("Get", "../../API/v1/Products");
+    requestOne.open("GET", "../../API/v1/Products"); // gets all the products
     requestOne.onreadystatechange = onRequstUpdate;
     requestOne.send();
 }
 
-loadAllCategories();
+loadAllProducts();
 
 /**
  * will generate the table with datasets
@@ -70,7 +72,7 @@ function onRequstUpdate() {
         description.innerText = data.description;
         price.innerText = data.price;
         stock.innerText = data.stock;
-        name.innerText = data.name;
+        id_category.innerText = data.id_category;
 
         dataSet.appendChild(product_id);
         dataSet.appendChild(sku);
@@ -105,7 +107,7 @@ function addEventListenerToButtons() {
             if (confirm("Sind Sie sicher das sie dieses Element " + sku + " löschen wollen") == true) {
                 requestOne = new XMLHttpRequest();
                 requestOne.open("DELETE", "../../API/v1/Product/" + sku);
-                requestOne.onreadystatechange = reloadAllCategories;
+                requestOne.onreadystatechange = reloadAllProducts;
                 requestOne.send();
             }
         });
@@ -125,8 +127,8 @@ function addEventListenerToButtons() {
 /**
  * delets the table for it to be realoded
  */
-function reloadAllCategories() {
-    document.querySelector("#kategorie-list").remove();
+function reloadAllProducts() {
+    document.querySelector("#product-list").remove();
     loadAllCategories();
 }
 

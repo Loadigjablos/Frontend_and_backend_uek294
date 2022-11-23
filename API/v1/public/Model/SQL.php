@@ -75,14 +75,16 @@
 			}
 		}
 
-        $result = $database->query("SELECT * FROM category WHERE category_id = \"$id_category\"");
+        if (!($id_category == null)) {
+            $result = $database->query("SELECT * FROM category WHERE category_id = \"$id_category\"");
 
-        if ($result == false) { } else if ($result !== true) {
-			if ($result->num_rows > 0) { } else {
+            if ($result == false) { } else if ($result !== true) {
+                if ($result->num_rows > 0) { } else {
+                    error_function(400, "category_id does not exist");
+                }
+            } else {
                 error_function(400, "category_id does not exist");
             }
-		} else {
-            error_function(400, "category_id does not exist");
         }
 
         $result = $database->query("INSERT INTO product (product_id, sku, active, id_category, name, image, description, price, stock) VALUES (NULL, '$sku', '$active', '$id_category', '$name', '$image', '$description', '$price', '$stock')");

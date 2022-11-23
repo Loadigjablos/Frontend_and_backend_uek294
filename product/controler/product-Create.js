@@ -1,6 +1,6 @@
 var sku = document.querySelector("#sku");
 var active = document.querySelector("#active");
-var id_category = document.querySelector("#category-dropdown");
+var idCategory = document.querySelector("#category-dropdown");
 var productName = document.querySelector("#name");
 var image = document.querySelector("#image");
 var description = document.querySelector("#description");
@@ -17,10 +17,14 @@ var requestOne;
 
 var requestTwo;
 requestTwo = new XMLHttpRequest();
-requestTwo.open("GET", "../../API/v1/Categorys");
+requestTwo.open("GET", "../../API/v1/Categorys"); // gets all the categorys
 requestTwo.onreadystatechange = onRequstGetCategorys;
 requestTwo.send();
 
+/**
+ * adds Category options to a select tag.
+ * @returns if the message issnt loaded
+ */
 function onRequstGetCategorys() {
     if (requestTwo.readyState < 4) {
         return;
@@ -35,7 +39,7 @@ function onRequstGetCategorys() {
         var option = document.createElement("option");
         option.innerText = categoryValue.category_id + ", " + categoryValue.active + ", " + categoryValue.name;
         option.value = categoryValue.category_id;
-        id_category.appendChild(option);
+        idCategory.appendChild(option);
     });
 }
 
@@ -43,19 +47,21 @@ function onRequstGetCategorys() {
  * the button create has this function when it is clicked
  */
 document.querySelector("#create").addEventListener("click", function (event) {
+    problem.innerHTML = "";
     requestOne = new XMLHttpRequest();
     requestOne.open("POST", "../../API/v1/Product");
     requestOne.onreadystatechange = onRequstUpdate;
 
+    // description needs a Value. cant be Null
     if (description.value == "") {
         problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Die Beschreibung muss gesetzt werden<div>";
         return;
     }
-    var categoryIdValue = id_category.value;
+    var categoryIdValue = idCategory.value;
     if (categoryIdValue == "") {
         categoryIdValue = null;
     }
-
+    
     var sendJSON = {
         sku: sku.value,
         active: active.checked,
@@ -66,7 +72,6 @@ document.querySelector("#create").addEventListener("click", function (event) {
         price: price.value,
         stock: stock.value
     }
-    console.log(JSON.stringify(sendJSON));
     requestOne.send(JSON.stringify(sendJSON));
     onRequstUpdate();
 });
@@ -82,8 +87,12 @@ function onRequstUpdate() {
     if (requestOne.status == 401) {
         loginRedirect();
     }
-    console.log(requestOne.status);
-    console.log(requestOne.responseText);
+    if (!(requestOne.status == 201)) {
+        var error = JSON.parse(requestOne.responseText);
+        if (!(error.error == "")) {
+            problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>" + error.error + "<div>";
+        }
+    }
 }
 
 /**

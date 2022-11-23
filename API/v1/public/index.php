@@ -176,33 +176,35 @@
         // the root and passwd string
         require_once "Controler/Secret.php";
 
-       // reads the requested JSON body
-       $body_content = file_get_contents("php://input");
-       $JSON_data = json_decode($body_content, true);
+        // reads the requested JSON body
+        $body_content = file_get_contents("php://input");
+        $JSON_data = json_decode($body_content, true);
 
-       // if the requested JSON data doesn't have these then there is an error
-       if (isset($JSON_data["sku"]) && isset($JSON_data["active"]) && isset($JSON_data["id_category"]) && isset($JSON_data["name"]) && isset($JSON_data["image"]) && isset($JSON_data["description"]) && isset($JSON_data["price"]) && isset($JSON_data["stock"])) { } else {
+        // if the requested JSON data doesn't have these then there is an error
+        if (isset($JSON_data["sku"]) && isset($JSON_data["active"]) && (isset($JSON_data["id_category"]) || ($JSON_data["id_category"] == null)) && isset($JSON_data["name"]) && isset($JSON_data["image"]) && isset($JSON_data["description"]) && isset($JSON_data["price"]) && isset($JSON_data["stock"])) { } else {
            error_function(400, "Empty request");
-       }
+        }
 
-       // Prepares the data to prevent bad data, SQL injection andCross site scripting
-       $sku = validate_string($JSON_data["sku"]);
-       $active = validate_boolean($JSON_data["active"]);
-       $id_category = validate_number($JSON_data["id_category"]);
-       $name = validate_string($JSON_data["name"]);
-       $image = validate_string($JSON_data["image"]);
-       $description = validate_string($JSON_data["description"]);
-       $price = validate_float($JSON_data["price"]);
-       $stock = validate_number($JSON_data["stock"]);
+        // Prepares the data to prevent bad data, SQL injection andCross site scripting
+        $sku = validate_string($JSON_data["sku"]);
+        $active = validate_boolean($JSON_data["active"]);
+        $id_category;
+        if ($JSON_data["id_category"] == null) {
+            $id_category = null;
+        } else {
+            $id_category = validate_number($JSON_data["id_category"]);
+        }
+        $name = validate_string($JSON_data["name"]);
+        $image = validate_string($JSON_data["image"]);
+        $description = validate_string($JSON_data["description"]);
+        $price = validate_float($JSON_data["price"]);
+        $stock = validate_number($JSON_data["stock"]);
 
-       if (!$sku) {
+        if (!$sku) {
            error_function(400, "sku is invalid, must contain at least 1 characters");
-       }
-       if (!(isset($active))) {
+        }
+        if (!(isset($active))) {
            error_function(400, "active is not set");
-       }
-       if (!$id_category) {
-        error_function(400, "id_category is invalid");
         }
         if (!$name) {
             error_function(400, "name is invalid, must contain at least 1 characters");

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="Description" content="Sie können Produkte und Kategorien erstellen, anzeigen, bearbeiten und löschen">
+        <meta name="keywords" content="erstellen, anzeigen, bearbeiten, löschen, produkte, Kategorien">
+        <link rel="stylesheet" href="../../style/style.css">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div>
+                    <a href="#">Produkte</a>
+                    <div class="drop-down">
+                        <a href="product-Create.html">Create</a>
+                        <a href="product-list.html">List</a>
+                        <a href="product-list-one.html">ListOne</a>
+                    </div>
+                </div>
+                <div>
+                    <a href="#">Kategorien</a>
+                    <div class="drop-down">
+                        <a href="../../kategorie/view/kategorie-Create.html">Create</a>
+                        <a href="../../kategorie/view/kategorie-list.html">List</a>
+                        <a href="../../kategorie/view/kategorie-list-one.html">ListOne</a>
+                    </div>
+                </div>
+                <a href="../../login/login.html">LogIn</a>
+            </nav>
+        </header>
+        <p class="distance-from-header" alt=".">yrs</p>
+        <main>
+            <div class="big-block">
+                <h1>Produkt bearbeiten</h1>
+                <span>Aktiv: <input type="checkbox" id="active"></span>
+                <span>ID Category: <select id="category-dropdown">
+                    <option value=""> -none- </option>
+                </select></span>
+                <span>Name: <input value="Thing" id="name"></span>
+                <span>Bild: <input value="Thing" id="image"></span>
+                <span>Preis: <input type="number" value="Thing" id="price"></span>
+                <span>stock: <input type="number" value="Thing" id="stock"></span>
+                <span>beschreibung: <textarea id="description"></textarea></span>
+                <button id="edit">BESTÄTIGEN</button>
+                <p id="problem"></p>
+            </div>
+            <br>
+            
+        </main>
+        <footer>
+            <p>(C) Dominic Streit</p>
+        </footer>
+        <script src="../controler/product-edit.js"></script>
+    </body>
+</html>
