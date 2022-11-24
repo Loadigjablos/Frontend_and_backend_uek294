@@ -50,11 +50,32 @@ document.querySelector("#edit").addEventListener("click", function (event) {
     requestTwo.open("PUT", "../../API/v1/Product/" + location.hash.substring(1));
     requestTwo.onreadystatechange = onChangeData;
 
-    // description needs a Value. cant be Null 
+    // description needs a Value. cant be Null
     if (description.value == "") {
         problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Die Beschreibung muss gesetzt werden<div>";
         return;
     }
+    // price needs a Value. cant be Null
+    if (price.value == "") {
+        problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Den preis muss gesetzt werden<div>";
+        return;
+    }
+    // stock needs a Value. cant be Null
+    if (description.value == "") {
+        problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Der stock muss gesetzt werden<div>";
+        return;
+    }
+    // name needs a Value. cant be Null
+    if (productName.value == "") {
+        problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Der name muss gesetzt werden<div>";
+        return;
+    }
+    // image needs a Value. cant be Null
+    if (image.value == "") {
+        problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Das image muss gesetzt werden<div>";
+        return;
+    }
+
     var categoryIdValue = idCategory.value;
     if (categoryIdValue == "") {
         categoryIdValue = null;
@@ -103,14 +124,16 @@ function onRequstUpdate() {
     if (requestThree.status == 401) {
         loginRedirect();
     }
-    var kategorieJson = JSON.parse(requestThree.responseText);
-    active.checked = kategorieJson.active;
-    idCategory.value = kategorieJson.id_category;
-    productName.checked = kategorieJson.name;
-    image.value = kategorieJson.image;
-    description.innerText = kategorieJson.description;
-    price.value = kategorieJson.price;
-    stock.value = kategorieJson.stock;
+
+    var productJson = JSON.parse(requestThree.responseText);
+    console.log(productJson);
+    active.checked = productJson.active;
+    idCategory.value = productJson.id_category;
+    productName.value = productJson.name;
+    image.value = productJson.image;
+    description.innerText = productJson.description;
+    price.value = productJson.price;
+    stock.value = productJson.stock;
 }
 
 /**
@@ -118,7 +141,7 @@ function onRequstUpdate() {
  */
 function loginRedirect() {
     window.location = "../../login/login.html";
-    document.querySelector("#login-problem").innerHTML = "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Melden sie sich an<div>";
+    document.querySelector("#login-problem").innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Melden sie sich an<div>";
 }
 
 /**

@@ -57,6 +57,33 @@ document.querySelector("#create").addEventListener("click", function (event) {
         problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Die Beschreibung muss gesetzt werden<div>";
         return;
     }
+    // price needs a Value. cant be Null
+    if (price.value == "") {
+        problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Den preis muss gesetzt werden<div>";
+        return;
+    }
+    // stock needs a Value. cant be Null
+    if (description.value == "") {
+        problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Der stock muss gesetzt werden<div>";
+        return;
+    }
+    // name needs a Value. cant be Null
+    if (productName.value == "") {
+        problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Der name muss gesetzt werden<div>";
+        return;
+    }
+    // image needs a Value. cant be Null
+    if (image.value == "") {
+        problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Das image muss gesetzt werden<div>";
+        return;
+    }
+    // sku needs a Value. cant be Null
+    if (sku.value == "") {
+        problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Das sku muss gesetzt werden<div>";
+        return;
+    }
+
+
     var categoryIdValue = idCategory.value;
     if (categoryIdValue == "") {
         categoryIdValue = null;

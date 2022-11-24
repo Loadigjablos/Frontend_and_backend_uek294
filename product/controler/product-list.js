@@ -14,7 +14,7 @@ function loadAllProducts() {
     table.innerHTML = "<tr><th>product ID</th><th>sku</th><th>active</th><th>id_category</th><th>productname</th><th>image</th><th>description</th><th>price</th><th>stock</th><th>Knöpfe</th></tr>";
     document.querySelector("#table-spot").appendChild(table);
 
-    kategorieList = document.querySelector("#product-list");
+    kategorieList = table;
 
     requestOne = new XMLHttpRequest();
     requestOne.open("GET", "../../API/v1/Products"); // gets all the products
@@ -107,7 +107,7 @@ function addEventListenerToButtons() {
             if (confirm("Sind Sie sicher das sie dieses Element " + sku + " löschen wollen") == true) {
                 requestOne = new XMLHttpRequest();
                 requestOne.open("DELETE", "../../API/v1/Product/" + sku);
-                requestOne.onreadystatechange = reloadAllProducts;
+                requestOne.onreadystatechange = afterDeleteReloadAllProducts;
                 requestOne.send();
             }
         });
@@ -125,11 +125,21 @@ function addEventListenerToButtons() {
 }
 
 /**
+ * when the product got deleted, the list can
+ */
+function afterDeleteReloadAllProducts() {
+    if (requestOne.readyState < 4) {
+        return;
+    }
+    reloadAllProducts();
+}
+
+/**
  * delets the table for it to be realoded
  */
 function reloadAllProducts() {
     document.querySelector("#product-list").remove();
-    loadAllCategories();
+    loadAllProducts();
 }
 
 /**

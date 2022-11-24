@@ -87,7 +87,7 @@ function addEventListenerToButtons() {
             if (confirm("Sind Sie sicher das sie dieses Element " + categoryId + " löschen wollen") == true) {
                 requestOne = new XMLHttpRequest();
                 requestOne.open("DELETE", "../../API/v1/Category/" + categoryId);
-                requestOne.onreadystatechange = reloadAllCategories;
+                requestOne.onreadystatechange = afterDeleteReloadAllCategories;
                 requestOne.send();
             }
         });
@@ -103,6 +103,17 @@ function addEventListenerToButtons() {
         });
     }
 }
+
+/**
+ * when the product got deleted, the list can
+ */
+ function afterDeleteReloadAllCategories() {
+    if (requestOne.readyState < 4) {
+        return;
+    }
+    reloadAllCategories();
+}
+
 
 /**
  * delets the table for it to be realoded

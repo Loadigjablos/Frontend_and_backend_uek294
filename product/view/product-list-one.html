@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="Description" content="Sie können Produkte und Kategorien erstellen, anzeigen, bearbeiten und löschen">
+        <meta name="keywords" content="erstellen, anzeigen, bearbeiten, löschen, produkte, Kategorien">
+        <link rel="stylesheet" href="../../style/style.css">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div>
+                    <a href="#">Produkte</a>
+                    <div class="drop-down">
+                        <a href="product-Create.html">Create</a>
+                        <a href="product-list.html">List</a>
+                        <a href="product-list-one.html">ListOne</a>
+                    </div>
+                </div>
+                <div>
+                    <a href="#">Kategorien</a>
+                    <div class="drop-down">
+                        <a href="../../kategorie/view/kategorie-Create.html">Create</a>
+                        <a href="../../kategorie/view/kategorie-list.html">List</a>
+                        <a href="../../kategorie/view/kategorie-list-one.html">ListOne</a>
+                    </div>
+                </div>
+                <a href="../../login/login.html">LogIn</a>
+            </nav>
+        </header>
+        <p class="distance-from-header" alt=".">yrs</p>
+        <main>
+            <div class="big-block">
+                <h1>Produkt einsehen</h1>
+                <span>geben sie hier die SKu ein? <input id="sku-search"></span>
+                <p id="problem"></p>
+            </div>
+            <br>
+
+            <div class="big-block">
+                <span>sku: <p id="sku"></p></span>
+                <span>Aktiv: <p id="active"></p></span>
+                <span>ID Category: <p id="category-dropdown"></p></span>
+                <span>Name: <p id="name"></p></span>
+                <span>Bild: <p id="image"></p></span>
+                <span>Preis: <p id="price"></p></span>
+                <span>stock: <p id="stock"></p></span>
+                <span>beschreibung: <p id="description"></p></span>
+            </div>
+            <br>
+
+        </main>
+        <footer>
+            <p>(C) Dominic Streit</p>
+        </footer>
+        <script src="../controler/product-list-one.js"></script>
+    </body>
+</html>
