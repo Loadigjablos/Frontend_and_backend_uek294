@@ -1,7 +1,7 @@
 * {
     padding: 0px;
     margin: 0px;
-    font-family: 'Bahnschrift', sans-serif;
+    font-family: 'Bahnschrift', 'DIN Alternate', sans-serif;
     text-decoration: none;
 }
 header {
@@ -60,16 +60,25 @@ main {
     padding-bottom: 100px;
     font-size: 1px;
 }
+.flex {
+    display: inline-flex;
+}
 table, th, tr, td {
     border: 1px solid black;
     border-collapse: collapse;
+    margin: auto;
 }
 td, th {
     max-width: 200px;
     text-overflow: ellipsis;
 }
 input {
-    width: 100%;
+    width: 70%;
+    box-sizing: border-box;
+    display: block;
+}
+p {
+    display: inline-block;
 }
 #buttonDelete {
     background-color: #b83d3d;
@@ -79,6 +88,9 @@ input {
 }
 button {
     border: 0px;
+}
+fieldset {
+    border-color: #000000;
 }
 @keyframes error-animation {
 	0% {

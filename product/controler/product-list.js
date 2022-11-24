@@ -11,7 +11,7 @@ function loadAllProducts() {
     buttonEditOut = [];
     var table = document.createElement("table");
     table.id = "product-list";
-    table.innerHTML = "<tr><th>product ID</th><th>sku</th><th>active</th><th>id_category</th><th>productname</th><th>image</th><th>description</th><th>price</th><th>stock</th><th>Knöpfe</th></tr>";
+    table.innerHTML = "<tr><th>product ID</th><th>sku</th><th>active</th><th>id_category</th><th>productname</th><th>image</th><th>description</th><th>price</th><th>stock</th><th>Knöpfe</th><th>ansehen</th></tr>";
     document.querySelector("#table-spot").appendChild(table);
 
     kategorieList = table;
@@ -50,6 +50,7 @@ function onRequstUpdate() {
         var price = document.createElement("td");
         var stock = document.createElement("td");
         var buttons = document.createElement("td");
+        var viewObject = document.createElement("td");
 
         var buttonDelete = document.createElement("button");
         buttonDelete.innerText = "LÖSCHEN";
@@ -63,6 +64,8 @@ function onRequstUpdate() {
 
         buttons.appendChild(buttonDelete);
         buttons.appendChild(buttonEdit);
+
+        viewObject.innerHTML = "<a href='product-list-one.html#" + data.sku + "'>ansehen</a>";
 
         product_id.innerText = data.product_id;
         sku.innerText = data.sku;
@@ -84,6 +87,7 @@ function onRequstUpdate() {
         dataSet.appendChild(price);
         dataSet.appendChild(stock);
         dataSet.appendChild(buttons);
+        dataSet.appendChild(viewObject);
 
         buttonDeleteOut.push(buttonDelete);
         buttonEditOut.push(buttonEdit);

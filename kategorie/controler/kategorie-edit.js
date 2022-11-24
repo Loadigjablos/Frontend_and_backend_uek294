@@ -49,6 +49,9 @@ function onRequstUpdate() {
     if (requestOne.status == 401) {
         loginRedirect();
     }
+    if (!(requestOne.status == 200)) {
+        backToIndexRedirect();
+    }
     var kategorieJson = JSON.parse(requestOne.responseText);
     categoryName.value = kategorieJson.name;
     categoryActive.checked = kategorieJson.active;
@@ -60,6 +63,13 @@ function onRequstUpdate() {
 function loginRedirect() {  
     window.location = "../../login/login.html";
     document.querySelector("#login-problem").innerHTML = "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Melden sie sich an<div>";
+}
+
+/**
+ * redirects the user to the start index page
+ */
+function backToIndexRedirect() {
+    window.location = "../../index.html";
 }
 
 /**

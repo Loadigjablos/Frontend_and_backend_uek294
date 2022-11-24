@@ -9,6 +9,9 @@ var description = document.querySelector("#description");
 var price = document.querySelector("#price");
 var stock = document.querySelector("#stock");
 
+var buttonDelete = document.querySelector("#buttonDelete");
+var buttonEdit = document.querySelector("#buttonEdit");
+
 var problem = document.querySelector("#problem");
 
 var requestOne;
@@ -42,7 +45,6 @@ function onRequstUpdate() {
         description.innerText = productJson.description;
         price.innerText = productJson.price;
         stock.innerText = productJson.stock;
-
         problem.innerHTML = "";
     } else {
         sku.innerText = "";
@@ -58,8 +60,21 @@ function onRequstUpdate() {
 }
 
 skuSearch.addEventListener("change", function (event) {
-    window.location = "product-list-one.html#" + skuSearch.value;
+    window.location = "product-edit.html#" + location.hash.substring(1);
     productChanged();
+});
+
+buttonDelete.addEventListener("click", function (event) {
+    var skuValue = location.hash.substring(1);
+    if (confirm("Sind Sie sicher das sie dieses Element " + skuValue + " löschen wollen") == true) {
+        requestOne = new XMLHttpRequest();
+        requestOne.open("DELETE", "../../API/v1/Product/" + skuValue);
+        requestOne.send();
+    }
+});
+
+buttonEdit.addEventListener("click", function (event) {
+    window.location = "product-edit.html#" + location.hash.substring(1);
 });
 
 /**
@@ -68,11 +83,4 @@ skuSearch.addEventListener("change", function (event) {
 function loginRedirect() {  
     window.location = "../../login/login.html";
     document.querySelector("#login-problem").innerHTML = "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Melden sie sich an<div>";
-}
-
-/**
- * redirects the user to the list page
- */
-function backRedirect() {
-    window.location = "/kategorie-list.html";
 }

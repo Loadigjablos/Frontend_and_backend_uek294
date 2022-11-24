@@ -119,6 +119,8 @@ function onRequstUpdate() {
         if (!(error.error == "")) {
             problem.innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>" + error.error + "<div>";
         }
+    } else {
+        alert("Erfolgreich");
     }
 }
 

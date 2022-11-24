@@ -124,7 +124,9 @@ function onRequstUpdate() {
     if (requestThree.status == 401) {
         loginRedirect();
     }
-
+    if (!(requestThree.status == 200)) {
+        backToIndexRedirect();
+    }
     var productJson = JSON.parse(requestThree.responseText);
     console.log(productJson);
     active.checked = productJson.active;
@@ -142,6 +144,13 @@ function onRequstUpdate() {
 function loginRedirect() {
     window.location = "../../login/login.html";
     document.querySelector("#login-problem").innerHTML += "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Melden sie sich an<div>";
+}
+
+/**
+ * redirects the user to the start index page
+ */
+ function backToIndexRedirect() {
+    window.location = "../../index.html";
 }
 
 /**

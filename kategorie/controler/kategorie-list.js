@@ -9,7 +9,7 @@ var buttonEditOut = []; // all the buttons that edit sertain datasets
 function loadAllCategories() {
     var table = document.createElement("table");
     table.id = "kategorie-list";
-    table.innerHTML = "<tr><th>Kategorien ID</th><th>Active</th><th>Name</th><th>Knöpfe</th></tr>";
+    table.innerHTML = "<tr><th>Kategorien ID</th><th>Active</th><th>Name</th><th>Knöpfe</th><th>ansehen</th></tr>";
     document.querySelector("#table-spot").appendChild(table);
 
     kategorieList = document.querySelector("#kategorie-list");
@@ -42,6 +42,7 @@ function onRequstUpdate() {
         var active = document.createElement("td");
         var name = document.createElement("td");
         var buttons = document.createElement("td");
+        var viewObject = document.createElement("td");
 
         var buttonDelete = document.createElement("button");
         buttonDelete.innerText = "LÖSCHEN";
@@ -56,6 +57,8 @@ function onRequstUpdate() {
         buttons.appendChild(buttonDelete);
         buttons.appendChild(buttonEdit);
 
+        viewObject.innerHTML = "<a href='kategorie-list-one.html#" + data.category_id + "'>ansehen</a>";
+
         category_id.innerText = data.category_id;
         active.innerText = data.active;
         name.innerText = data.name;
@@ -64,6 +67,7 @@ function onRequstUpdate() {
         dataSet.appendChild(active);
         dataSet.appendChild(name);
         dataSet.appendChild(buttons);
+        dataSet.appendChild(viewObject);
 
         buttonDeleteOut.push(buttonDelete);
         buttonEditOut.push(buttonEdit);

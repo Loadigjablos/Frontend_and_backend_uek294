@@ -4,6 +4,11 @@ var categoryId = document.querySelector("#id");
 
 var inputCategoryId = document.querySelector("#categori-id");
 
+var buttonDelete = document.querySelector("#buttonDelete");
+var buttonEdit = document.querySelector("#buttonEdit");
+
+var problem = document.querySelector("#problem");
+
 var requestOne;
 function categorieChanged() {
     requestOne = new XMLHttpRequest();
@@ -33,12 +38,30 @@ function onRequstUpdate() {
         if (kategorieJson.name == undefined || kategorieJson.name == undefined || kategorieJson.name == undefined) {
             backRedirect();
         }
+    } else {
+        categoryName.innerText = "";
+        categoryActive.innerText = "";
+        categoryId.innerText = "";
+        problem.innerHTML = "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Produkt wurde nicht gefunden<div>";
     }
 }
 
 inputCategoryId.addEventListener("change", function (event) {
-    window.location = "kategorie-list-one.html#" + inputCategoryId.value;
+    window.location = "kategorie-list-one.html#" + location.hash.substring(1);
     categorieChanged();
+});
+
+buttonDelete.addEventListener("click", function (event) {
+    var categoryIdValue = location.hash.substring(1);
+    if (confirm("Sind Sie sicher das sie dieses Element " + categoryIdValue + " löschen wollen") == true) {
+        requestOne = new XMLHttpRequest();
+        requestOne.open("DELETE", "../../API/v1/Category/" + categoryIdValue);
+        requestOne.send();
+    }
+});
+
+buttonEdit.addEventListener("click", function (event) {
+    window.location = "kategorie-edit.html#" + skuSearch.value;
 });
 
 /**

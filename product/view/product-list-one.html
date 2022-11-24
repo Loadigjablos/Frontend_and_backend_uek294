@@ -39,14 +39,32 @@
             <br>
 
             <div class="big-block">
-                <span>sku: <p id="sku"></p></span>
-                <span>Aktiv: <p id="active"></p></span>
-                <span>ID Category: <p id="category-dropdown"></p></span>
-                <span>Name: <p id="name"></p></span>
-                <span>Bild: <p id="image"></p></span>
-                <span>Preis: <p id="price"></p></span>
-                <span>stock: <p id="stock"></p></span>
-                <span>beschreibung: <p id="description"></p></span>
+                <div class="flex">
+                    <div>
+                        <span>sku: <p id="sku"></p></span>
+                        <br>
+                        <span>Aktiv: <p id="active"></p></span>
+                        <br>
+                        <span>ID Category: <p id="category-dropdown"></p></span>
+                        <br>
+                        <span>Name: <p id="name"></p></span>
+                        <br>
+                        <span>Preis: <p id="price"></p></span>
+                        <br>
+                        <span>stock: <p id="stock"></p></span>
+                        <br>
+                        <fieldset>
+                            <legend>beschreibung:</legend>
+                            <p id="description"></p>
+                        </fieldset>
+                    </div>
+                    <div>
+                        <p id="image"></p></div>
+                    </div>
+                </div>
+                <br>
+                <button id="buttonDelete">Löschen</button>
+                <button id="buttonEdit">Bearbeiten</button>
             </div>
             <br>
 
