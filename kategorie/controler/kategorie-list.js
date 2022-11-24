@@ -57,7 +57,7 @@ function onRequstUpdate() {
         buttons.appendChild(buttonDelete);
         buttons.appendChild(buttonEdit);
 
-        viewObject.innerHTML = "<a href='kategorie-list-one.html#" + data.category_id + "'>ansehen</a>";
+        viewObject.innerHTML = "<a href='kategorie-list-one.html#" + data.category_id + "'>ansehen</a>"; // the link to edit this category
 
         category_id.innerText = data.category_id;
         active.innerText = data.active;

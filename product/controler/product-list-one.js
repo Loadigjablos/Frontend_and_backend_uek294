@@ -37,7 +37,7 @@ function onRequstUpdate() {
     }
     if (requestOne.status == 200) {
         var productJson = JSON.parse(requestOne.responseText);
-        sku.innerText
+        sku.innerText = productJson.sku;
         active.innerText = productJson.active;
         idCategory.innerText = productJson.id_category;
         productName.innerText = productJson.name;
@@ -59,11 +59,17 @@ function onRequstUpdate() {
     }
 }
 
+/**
+ * changes the hashtag and this happens: categorieChanged
+ */
 skuSearch.addEventListener("change", function (event) {
     window.location = "product-edit.html#" + location.hash.substring(1);
     productChanged();
 });
 
+/**
+ * if clicked, will delete the product
+ */
 buttonDelete.addEventListener("click", function (event) {
     var skuValue = location.hash.substring(1);
     if (confirm("Sind Sie sicher das sie dieses Element " + skuValue + " löschen wollen") == true) {
@@ -73,6 +79,9 @@ buttonDelete.addEventListener("click", function (event) {
     }
 });
 
+/**
+ * if clicked, will redirect to the edit page
+ */
 buttonEdit.addEventListener("click", function (event) {
     window.location = "product-edit.html#" + location.hash.substring(1);
 });

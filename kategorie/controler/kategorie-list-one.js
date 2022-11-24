@@ -10,6 +10,9 @@ var buttonEdit = document.querySelector("#buttonEdit");
 var problem = document.querySelector("#problem");
 
 var requestOne;
+/**
+ * opens the category from the hashtag
+ */
 function categorieChanged() {
     requestOne = new XMLHttpRequest();
     requestOne.open("Get", "../../API/v1/Category/" + location.hash.substring(1));
@@ -46,11 +49,17 @@ function onRequstUpdate() {
     }
 }
 
+/**
+ * changes the hashtag and this happens: categorieChanged
+ */
 inputCategoryId.addEventListener("change", function (event) {
-    window.location = "kategorie-list-one.html#" + location.hash.substring(1);
+    window.location = "kategorie-list-one.html#" + inputCategoryId.value;
     categorieChanged();
 });
 
+/**
+ * if clicked, will delete the categorie
+ */
 buttonDelete.addEventListener("click", function (event) {
     var categoryIdValue = location.hash.substring(1);
     if (confirm("Sind Sie sicher das sie dieses Element " + categoryIdValue + " löschen wollen") == true) {
@@ -60,8 +69,11 @@ buttonDelete.addEventListener("click", function (event) {
     }
 });
 
+/**
+ * if clicked, will redirect to the edit page
+ */
 buttonEdit.addEventListener("click", function (event) {
-    window.location = "kategorie-edit.html#" + skuSearch.value;
+    window.location = "kategorie-edit.html#" + location.hash.substring(1);
 });
 
 /**
