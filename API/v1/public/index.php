@@ -201,7 +201,7 @@
         $stock = validate_number($JSON_data["stock"]);
 
         if (!$sku) {
-           error_function(400, "sku is invalid, must contain at least 1 characters");
+           error_function(400, "sku is invalid, must contain at least 1 characters and can't contain '\\' and '/' ");
         }
         if (!(isset($active))) {
            error_function(400, "active is not set");
