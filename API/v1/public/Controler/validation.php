@@ -6,6 +6,10 @@
     function validate_string($_string) {
         $_string = addslashes($_string);
         $_string = strip_tags($_string);
+        // could make errors in the frontend
+        if (str_contains($_string, "/") || str_contains($_string, "\\")) {
+            return false;
+        }
         // a string needs at least one character
         if (!(isset($_string) && !(strlen($_string) < 1) && !(empty($_string)))) {
             return false;
