@@ -15,6 +15,7 @@ document.querySelector("#create").addEventListener("click", function (event) {
     } else {
         activeValue = true;
     }
+
     var sendJSON = {
         active: activeValue,
         name: categoryName.value

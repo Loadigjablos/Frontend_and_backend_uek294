@@ -36,7 +36,7 @@ function onRequstGetCategorys() {
 
     categorieJson.forEach(categoryValue => {
         var option = document.createElement("option");
-        option.innerText = categoryValue.category_id + ", " + categoryValue.active + ", " + categoryValue.name;
+        option.innerText = "ID: " + categoryValue.category_id + ", Active:" + categoryValue.active + ", Name:" + categoryValue.name;
         option.value = categoryValue.category_id;
         idCategory.appendChild(option);
     });
