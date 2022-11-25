@@ -60,7 +60,7 @@ function onRequstUpdate() {
 /**
  * redirects the user to the login page
  */
-function loginRedirect() {  
+function loginRedirect() {
     window.location = "../../login/login.html";
     document.querySelector("#login-problem").innerHTML = "<div style='animation-name: error-animation;animation-duration: 3s;animation-iteration-count: infinite;'>Melden sie sich an<div>";
 }

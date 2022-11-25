@@ -87,7 +87,7 @@
             }
         }
 
-        $result = $database->query("INSERT INTO product (product_id, sku, active, id_category, name, image, description, price, stock) VALUES (NULL, '$sku', '$active', '$id_category', '$name', '$image', '$description', '$price', '$stock')");
+        $result = $database->query("INSERT INTO product (product_id, sku, active, id_category, name, image, description, price, stock) VALUES (NULL, '$sku', '$active', $id_category, '$name', '$image', '$description', '$price', '$stock')");
 
         if (!$result) {
             error_function(500, "Wrong SQL Statment");
